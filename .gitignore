@@ -1,3 +1,4 @@
 *.o
 *.json
 simulate
+odin-game-of-life
