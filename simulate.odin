@@ -43,6 +43,7 @@ update:: proc(grid:[dynamic][dynamic]int) -> ([dynamic][dynamic]int) {
       else if value == 3 do grid[i][j] = 1
       else if value == 4 do grid[i][j] = 1
       else do grid[i][j] = 0
+      //fmt.printf("{} {}\n", value, grid[i][j])
     }
   }
   return grid
@@ -53,7 +54,7 @@ initialize::proc() -> (grid: [dynamic][dynamic]int){
     for j in 0..<size_w {
       value:int = 0
       random_number := rand.int31() % 10
-      if (random_number > 3) do value=1
+      if (random_number > 7) do value=1
       append(&temp, value)
     }
     append(&grid, temp)
