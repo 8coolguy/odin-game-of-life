@@ -21,7 +21,7 @@ print:: proc(grid:[dynamic][dynamic]int){
 within_grid::proc(r, c: int) -> bool{
   return r > -1 && r < size_h && c > -1 && c < size_w
 }
-update:: proc(grid:[dynamic][dynamic]int) -> ([dynamic][dynamic]int) {
+update:: proc(grid:^[dynamic][dynamic]int) -> () {
   grid:=grid
   for i in 0..<size_h {
     for j in 0..<size_w {
@@ -45,7 +45,6 @@ update:: proc(grid:[dynamic][dynamic]int) -> ([dynamic][dynamic]int) {
       else do grid[i][j] = 0
     }
   }
-  return grid
 }
 initialize::proc() -> (grid: [dynamic][dynamic]int){
   spawn_chance := i32(100 - spawn_chance)
@@ -92,7 +91,7 @@ test :: proc(){
   defer delete(grid)
   for {
     print(grid)
-    grid = update(grid)
+    update(&grid)
     fmt.println()
     time.sleep(5000000000)
   }

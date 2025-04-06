@@ -23,7 +23,7 @@ main::proc(){
   defer delete(grid)
   for !raylib.WindowShouldClose() {
     raylib.BeginDrawing()
-    grid = update(grid)
+    update(&grid)
     drawGrid(grid)  
     raylib.EndDrawing()
   }
