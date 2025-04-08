@@ -4,7 +4,7 @@ import "vendor:raylib"
 import "core:fmt"
 import "core:os"
 
-drawGrid::proc(grid:[dynamic][dynamic]int){
+drawGrid::proc(grid:^[dynamic][dynamic]int){
   for i in 0..<size_h {
     for j in 0..<size_w {
       if grid[i][j] > 0 {
@@ -23,8 +23,8 @@ main::proc(){
   defer delete(grid)
   for !raylib.WindowShouldClose() {
     raylib.BeginDrawing()
-    update(&grid)
-    drawGrid(grid)  
+    julia(&grid)
+    drawJulia(&grid)
     raylib.EndDrawing()
   }
   raylib.CloseWindow()
