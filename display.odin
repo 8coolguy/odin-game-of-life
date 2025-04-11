@@ -3,6 +3,8 @@ package game_of_life
 import "vendor:raylib"
 import "core:fmt"
 import "core:os"
+import "core:math"
+import "core:time"
 
 drawGrid::proc(grid:^[dynamic][dynamic]int){
   for i in 0..<size_h {
@@ -21,10 +23,12 @@ main::proc(){
   fmt.printf("Width {}, Height {}\n", size_w, size_h)
   grid :[dynamic][dynamic]int = initialize()
   defer delete(grid)
+  start:= time.now()
   for !raylib.WindowShouldClose() {
     raylib.BeginDrawing()
-    julia(&grid)
-    drawJulia(&grid)
+    time_since_start:=time.duration_seconds(time.since(start))
+    julia(&grid, 0, .7885 * math.exp(f32(math.cos_f64(time_since_start))), 3.0)
+    drawJulia(&grid, raylib.BLACK, raylib.WHITE, raylib.RED)
     raylib.EndDrawing()
   }
   raylib.CloseWindow()
